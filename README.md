@@ -1,6 +1,21 @@
-# Projeto de Análise de Dados
+# Projeto de Análise de Dados -SAP
 
-Este projeto é uma aplicação Python que utiliza várias bibliotecas para realizar análises de dados.
+# Entendo a Nossa Secretária
+
+Este projeto visa fornecer uma análise detalhada e abrangente sobre os servidores de uma determinada secretaria, focando em aspectos quantitativos e qualitativos que influenciam diretamente a administração pública e a política de recursos humanos. Através de uma série de passos, exploramos diversas dimensões para um entendimento profundo dos seguintes pontos:
+
+## Análise Quantitativa
+- **Passos 1-12:** Estes passos envolvem a análise da estrutura organizacional e financeira da secretaria, abrangendo desde o número de servidores ativos e inativos, médias salariais por cargo e status, até o impacto financeiro para o estado e históricos de reajustes salariais e reformas previdenciárias.
+
+## Informações Adicionais Quantitativas
+- **Passos 11-16:** Focam em investigações detalhadas sobre a sustentabilidade financeira da secretaria, incluindo déficit previdenciário, condições de aposentadoria dos servidores e comparações salariais detalhadas por status de emprego e atividade.
+
+## Análise Qualitativa
+- **Passos 17-22:** Estes passos tratam das percepções dos servidores sobre seu ambiente de trabalho e remuneração, o impacto da inflação e reformas previdenciárias nas suas remunerações, e comparações com outras secretarias. Também inclui a construção de um ranking nacional de remuneração dos policiais penais e socioeducativos.
+
+Este projeto utiliza dados públicos para realizar análises que ajudem a melhorar a gestão de recursos humanos nas secretarias e fornecer transparência sobre a administração pública.
+
+
 
 ## Requisitos
 
