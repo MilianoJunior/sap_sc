@@ -70,3 +70,13 @@ def percentual(X_maior, Y_menor):
         return round((Y_menor / X_maior) * 100,3)
     except Exception as e:
         raise Exception(f'Function percentual: {e}')
+
+def download_do(data):
+    ''' Faz o download do diarios oficiais '''
+    try:
+        for s in range(3150, 3350):
+            url = 'https://portal.doe.sea.sc.gov.br/apis/count-view/{s}'.format(s=s)
+            name_file = download_pdf(url)
+            print(s, name_file)
+    except Exception as e:
+        raise Exception(f'Function download_do: {e}')

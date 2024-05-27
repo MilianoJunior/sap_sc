@@ -13,7 +13,6 @@ Este projeto visa fornecer uma análise detalhada e abrangente sobre os servidor
 - **Passos 17-22:** Estes passos tratam das percepções dos servidores sobre seu ambiente de trabalho e remuneração, o impacto da inflação e reformas previdenciárias nas suas remunerações, e comparações com outras secretarias. Também inclui a construção de um ranking nacional de remuneração dos policiais penais e socioeducativos.
 
 Este projeto utiliza dados públicos para realizar análises que ajudem a melhorar a gestão de recursos humanos nas secretarias e fornecer transparência sobre a administração pública.
-
 '''
 # -----------------------------------------------------------
 # importar bibliotecas necessárias
@@ -32,6 +31,7 @@ from libs.funcoes import ( get_carregar_dados,
                            get_total_servidores,
                            get_total_servidores_geral,
                            percentual)
+from libs.do_funcoes import (main,)
 
 from libs.componentes import (comp_gauge_servidores,
                               comp_gauge,
@@ -87,52 +87,44 @@ def resumo():
 
 
 
-resumo()
+# resumo()
 # Configuração da variável path
-path_sap = os.path.join(os.getcwd(), 'data', 'servidores_sap.csv')
-path_geral = os.path.join(os.getcwd(), 'data', 'total_servidores.csv')
+# path_sap = os.path.join(os.getcwd(), 'data', 'servidores_sap.csv')
+# path_geral = os.path.join(os.getcwd(), 'data', 'total_servidores.csv')
+#
+# # carregar os dados
+# df_sap = get_carregar_dados(path_sap)
+# df_geral = get_carregar_dados(path_geral)
+#
+# # Exibir o título do projeto
+# st.subheader('Entendendo a SAP')
+#
+# # colunas
+# col1, col2 = st.columns(2)
+#
+# # 1 passo: quantos servidores fazer parte desta secretária
+# total_servidores_sap = get_total_servidores(df_sap)
+# total_servidores = get_total_servidores_geral()
+#
+#
+# with col1:
+#     st.metric('Total de servidores na SAP:',total_servidores_sap)
+#
+# # gauge_01 = comp_gauge_servidores(total_servidores_sap, total_servidores, '')
+# gauge_01 = comp_gauge(total_servidores,total_servidores_sap, 'Total de servidores na SAP')
+#
+# with col2:
+#     st.plotly_chart(gauge_01)
 
-# carregar os dados
-df_sap = get_carregar_dados(path_sap)
-df_geral = get_carregar_dados(path_geral)
 
-# Exibir o título do projeto
-st.subheader('Entendendo a SAP')
-
-# colunas
-col1, col2 = st.columns(2)
-
-# 1 passo: quantos servidores fazer parte desta secretária
-total_servidores_sap = get_total_servidores(df_sap)
-total_servidores = get_total_servidores_geral()
-
-
-print(total_servidores_sap, df_sap.shape)
-print(total_servidores)
-with col1:
-    st.metric('Total de servidores na SAP:',total_servidores_sap)
-
-# gauge_01 = comp_gauge_servidores(total_servidores_sap, total_servidores, '')
-gauge_01 = comp_gauge(total_servidores,total_servidores_sap, 'Total de servidores na SAP')
-
-with col2:
-    st.plotly_chart(gauge_01)
-
-with col1:
-    st.metric('Total de servidores:',total_servidores)
-
-gauge_02 = comp_gauge(total_servidores, total_servidores, '')
-
-with col2:
-    st.plotly_chart(gauge_02)
-
+main()
 # 2 passo: qual o impacto financeiro para o estado
-total_despesas_sap = get_total_despesas(df_sap)
-total_despesas_geral = get_total_despesas(df_geral)
-st.write('Total de despesas na SAP:',total_despesas_sap)
-comp_gauge_servidores(total_despesas_sap, total_despesas_geral, 'Total de despesas na SAP')
+# total_despesas_sap = get_total_despesas(df_sap)
+# total_despesas_geral = get_total_despesas(df_geral)
+# st.write('Total de despesas na SAP:',total_despesas_sap)
+# comp_gauge_servidores(total_despesas_sap, total_despesas_geral, 'Total de despesas na SAP')
 
-componente_inflacao_acumulada()
+# componente_inflacao_acumulada()
 
 # percentual = round((impacto_financeiro / total_despesas) * 100,3)
 #
