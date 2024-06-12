@@ -1,12 +1,18 @@
 # Importar bibliotecas
+import streamlit as st
 import requests
 import os
 import pandas as pd
 import PyPDF2
-import streamlit as st
 import re
 import numpy as np
+
+
 cont = 0
+
+# Restante do seu código...
+
+
 def download_pdf(url):
     ''' Faz o download do diarios oficiais '''
 
@@ -56,6 +62,35 @@ def abrir_pdf(file_name):
     except Exception as e:
         raise Exception('Erro ao abrir o pdf.{e}'.format(e=e))
 
+def anexar_frase(palavras):
+    ''' Anexa a frase '''
+    qtd = len(palavras)
+    for i in range(0,qtd):
+        if i >= qtd-1:
+            break
+        # print(i, qtd, palavras[i])
+        if palavras[i][-1] == '-':
+            palavras[i] =  palavras[i][:-1] + palavras[i+1]
+            palavras.pop(i + 1)
+            qtd = len(palavras)
+
+    return palavras
+
+def buscar_secao(palavras):
+    ''' Busca a seção '''
+    def todas_palavras_maiusculas(frase):
+        palavras = frase.split()
+        for palavra in palavras:
+            if not palavra.isupper():
+                return False
+        return True
+    secao = []
+    for palavra in palavras:
+        # verifica se as palavras são todas maiúsculas
+        if todas_palavras_maiusculas(palavra):
+            secao.append(palavra)
+    return secao
+
 def categorizar_texto(reader):
 
     page = 0
@@ -63,11 +98,12 @@ def categorizar_texto(reader):
     for text in reader.pages:
         sections = re.split(r'(?<=\n)\n', text.extract_text())
         palavras = text.extract_text().split('\n')
-        print(text.extract_text())
-        print('¨¨¨¨¨¨¨¨¨¨¨¨'*10)
-        for section in sections:
-            print(section)
+        palavras = anexar_frase(palavras)
+        secao = buscar_secao(palavras)
+        for section in enumerate(secao):
+            print('Secao: ',section)
             print('---'*10)
+
         # print(sections)
         for palavra in palavras:
             categorized_data.append(palavra)
@@ -83,39 +119,7 @@ def criar_dataframe(categorized_data):
 
 def ignore_header_footer(reader):
     try:
-
-        # for s in dir(reader):
-        #     if not '_' in s:
-        #         try:
-        #             print(s)
-        #             print('  '*10,getattr(reader, s)())
-        #             print('---'*10)
-        #         except:
-        #             try:
-        #                 print(s)
-        #                 print('  '*10,getattr(reader, s))
-        #                 print('---'*10)
-        #             except:
-        #                 pass
-        #
-        # print(len(reader.pages))
-        # page = reader.pages[3]
-        # parts = []
-        # def visitor_body(text, cm, tm, fontDict, fontSize):
-        #     y = tm[5]
-        #     if y > 50 and y < 720:
-        #         parts.append(text)
-
-        # for page in reader.pages:
-        #     # parts = page.extract_text(visitor_text=visitor_body)
-        #     texto = page.extract_text()
-        #     parts.append(texto)
         categoria = categorizar_texto(reader)
-
-
-        # text_body = "".join(parts)
-
-        # print(text_body)
         return categoria
     except Exception as e:
         raise Exception('Erro ao ignorar o header e footer.{e}'.format(e=e))
@@ -156,3 +160,5 @@ def main():
 
     except Exception as e:
         print('Erro no main.{e}'.format(e=e))
+
+

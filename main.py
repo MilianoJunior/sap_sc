@@ -41,12 +41,15 @@ from libs.componentes import (comp_gauge_servidores,
 # Configuração da página
 # -----------------------------------------------------------
 
+# Configurar a página do aplicativo Streamlit
 st.set_page_config(
-                        layout="wide",
-                        page_title="EngeSEP",
-                        page_icon="📊",
-                        initial_sidebar_state="expanded",
-                     )
+                    page_title="APP DO",
+                    page_icon="🧊",
+                    layout="wide",
+                    initial_sidebar_state="auto",
+                    menu_items={}
+)
+
 
 # -----------------------------------------------------------
 # Layout das páginas - Análise Quantitativa
@@ -85,88 +88,28 @@ def resumo():
     st.sidebar.write('21. Ranking Nacional de Remuneração')
     st.sidebar.write('22. Conclusão')
 
-
-
-# resumo()
-# Configuração da variável path
-# path_sap = os.path.join(os.getcwd(), 'data', 'servidores_sap.csv')
-# path_geral = os.path.join(os.getcwd(), 'data', 'total_servidores.csv')
+# def main():
+#     ''' Dashboard principal '''
 #
-# # carregar os dados
-# df_sap = get_carregar_dados(path_sap)
-# df_geral = get_carregar_dados(path_geral)
+#     # configuração da página
 #
-# # Exibir o título do projeto
-# st.subheader('Entendendo a SAP')
+#     #
+#     # st.markdown("""
+#     #     <style>
+#     #         body {
+#     #             margin: 0; !important
+#     #             padding: 0; !important
+#     #         }
+#     #         .st-emotion-cache-1jicfl2{
+#     #             width: 100%;
+#     #             padding: 0rem 1rem 1rem;
+#     #             min-width: auto;
+#     #             max-width: initial;
+#     #         }
+#     #     </style>
+#     #     """, unsafe_allow_html=True)
 #
-# # colunas
-# col1, col2 = st.columns(2)
-#
-# # 1 passo: quantos servidores fazer parte desta secretária
-# total_servidores_sap = get_total_servidores(df_sap)
-# total_servidores = get_total_servidores_geral()
-#
-#
-# with col1:
-#     st.metric('Total de servidores na SAP:',total_servidores_sap)
-#
-# # gauge_01 = comp_gauge_servidores(total_servidores_sap, total_servidores, '')
-# gauge_01 = comp_gauge(total_servidores,total_servidores_sap, 'Total de servidores na SAP')
-#
-# with col2:
-#     st.plotly_chart(gauge_01)
-
-
-main()
-# 2 passo: qual o impacto financeiro para o estado
-# total_despesas_sap = get_total_despesas(df_sap)
-# total_despesas_geral = get_total_despesas(df_geral)
-# st.write('Total de despesas na SAP:',total_despesas_sap)
-# comp_gauge_servidores(total_despesas_sap, total_despesas_geral, 'Total de despesas na SAP')
-
-# componente_inflacao_acumulada()
-
-# percentual = round((impacto_financeiro / total_despesas) * 100,3)
-#
-# texto = f'O impacto financeiro para o estado é de R$ {impacto_financeiro}, representando {percentual} % do total de despesas. Total de despesas: R$ {total_despesas:.2f}'
-#
-# st.write(texto)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def main():
-    ''' Dashboard principal '''
-
-    # configuração da página
-
-
-    st.markdown("""
-        <style>
-            body {
-                margin: 0; !important
-                padding: 0; !important
-            }
-            .st-emotion-cache-1jicfl2{
-                width: 100%;
-                padding: 0rem 1rem 1rem;
-                min-width: auto;
-                max-width: initial;
-            }
-        </style>
-        """, unsafe_allow_html=True)
-
-    # Header
+#     # Header
 
 
 if __name__ == '__main__':
